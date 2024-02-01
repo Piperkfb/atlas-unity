@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 186951156}
   - component: {fileID: 186951155}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 583332532}
   - component: {fileID: 583332531}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
