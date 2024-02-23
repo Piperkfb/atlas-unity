@@ -1,48 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 2000f;
+    public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
+    private CharacterController player;
+    private Vector3 direction;
+    private Vector2 dirInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        player.SimpleMove(direction * walkSpeed * Time.deltaTime);
     }
-      void playermove()
-    {
-        if (Input.GetKey("w"))
-        {
-            rb.AddForce(0, 0, walkSpeed * Time.deltaTime);
-        }
 
-        if (Input.GetKey("s"))
-        {
-            rb.AddForce(0, 0, -walkSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey("a"))
-        {
-            rb.AddForce(-walkSpeed * Time.deltaTime, 0, 0);
-        }
-        
-        if (Input.GetKey("d"))
-        {
-            rb.AddForce(walkSpeed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey("space"))
-        /// make a clause that if not on ground, dont jump
-        {
-            rb.AddForce(0, jumpSpeed * Time.deltaTime, 0)
-        }
-    }
 }

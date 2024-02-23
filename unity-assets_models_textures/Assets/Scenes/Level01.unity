@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -633,6 +633,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5806236483519330452, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
       insertIndex: -1
       addedObject: {fileID: 10551138510688139}
+    - targetCorrespondingSourceObject: {fileID: 5806236483519330452, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 10551138510688146}
+    - targetCorrespondingSourceObject: {fileID: 5806236483519330452, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 10551138510688151}
   m_SourcePrefab: {fileID: 100100000, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
 --- !u!1 &10551138510688138 stripped
 GameObject:
@@ -651,6 +657,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a560e0babb2cae4f9ff1f59d13e88c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 8
+  jumpSpeed: 7
+--- !u!143 &10551138510688146
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10551138510688138}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &10551138510688151
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10551138510688138}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &5492244765654652905
 PrefabInstance:
   m_ObjectHideFlags: 0
