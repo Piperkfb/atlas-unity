@@ -622,6 +622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 354004529741710279, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ae58eb412f437e644a6baf0e80c92566, type: 2}
     - target: {fileID: 5806236483519330452, guid: 13ee80a27298d7b4ab789f39cdb5b543, type: 3}
       propertyPath: m_Name
       value: Player
@@ -659,6 +663,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   jumpSpeed: 7
+  gravity: 20
+  fallVelocity: 0
 --- !u!143 &10551138510688146
 CharacterController:
   m_ObjectHideFlags: 0

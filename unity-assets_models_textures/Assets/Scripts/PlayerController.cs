@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
+    public float gravity = 9.8f;
+    public float fallVelocity;
     private CharacterController player;
-    private Vector3 direction;
-    private Vector2 dirInput;
+    private Vector3 direction = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        player.SimpleMove(direction * walkSpeed * Time.deltaTime);
-    }
+        if (player.isGrounded)
+        {
+            direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            direction *= walkSpeed;
+            if(Input.GetButton("Jump"))
+            {
+                direction.y = jumpSpeed;
+            }
+        }
+        else
+        {
+            direction = new Vector3(Input.GetAxis("Horizontal"), direction.y, Input.GetAxis("Vertical"));
+            direction.x *= walkSpeed;
+            direction.z *= walkSpeed;
+        }
+        direction.y -= gravity * Time.deltaTime;
+        player.Move(direction * Time.deltaTime);
+        
 
+    }
 }
