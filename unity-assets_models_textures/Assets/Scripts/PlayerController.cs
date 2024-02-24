@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
-    public float gravity = 9.8f;
+    public float rotatito;
+    public float gravity;
     public float fallVelocity;
     private CharacterController player;
-    private Transform playerPos;
-    public Camera mainCamera;
+    public Transform CamTrans;
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 direction = Vector3.zero;
@@ -20,42 +20,63 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<CharacterController>();
-        playerPos = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ///delcaring amd building
+        float Hori = Input.GetAxis("Horizontal");
+        float Verti = Input.GetAxis("Vertical"); 
+
+        camForward = CamTrans.forward;
+        camRight = CamTrans.right;
+        camForward.y = 0;
+        camRight.y = 0;
+
+        ///camera relatives
+        Vector3 forwardRelative = Verti * camForward;
+        Vector3 rightRelative = Hori * camRight;
+
+        /// direction set
+        direction = forwardRelative + rightRelative;
+
+        float magnitude = Mathf.Clamp01(direction.magnitude) * walkSpeed;
+        direction.Normalize();
+
+        ///jump and gravity
+        gravity += Physics.gravity.y * Time.deltaTime;
+
         if (player.isGrounded)
         {
-            direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            direction = transform.TransformDirection(direction);
-            direction *= walkSpeed;
-            if(Input.GetButton("Jump"))
+            gravity = -0.5f;
+            if (Input.GetButtonDown("Jump"))
             {
-                direction.y = jumpSpeed;
+                gravity = jumpSpeed;
             }
         }
-        else
-        {
-            direction = new Vector3(Input.GetAxis("Horizontal"), direction.y, Input.GetAxis("Vertical"));
-            direction = transform.TransformDirection(direction);
-            direction.x *= walkSpeed;
-            direction.z *= walkSpeed;
-        }
-        direction.y -= gravity * Time.deltaTime;
-        player.Move(direction * Time.deltaTime);
-        
 
+        Vector3 velocity = direction * magnitude;
+        velocity.y = gravity;
+        player.Move(velocity * Time.deltaTime);
+        
+        if (direction != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, toRotation, rotatito * Time.deltaTime);
+        }
     }
-    public void CamControl()
+    private void LateUpdate() 
     {
-        camForward = mainCamera.transform.forward;
-        camRight = mainCamera.transform.right;
-        camForward.y = 0;
-        camRight.y =0;
-        camForward = camForward.normalized;
-        camRight = camRight.normalized;
+        DidYouFall();    
+    }
+    void DidYouFall()
+    {
+        if (transform.position.y < -20)
+        {
+        player.SimpleMove(Vector3.zero);
+        player.transform.position = new Vector3(0, 15, 0);
+        }
     }
 }

@@ -761,9 +761,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   jumpSpeed: 7
+  rotatito: 0
   gravity: 9
   fallVelocity: 0
-  mainCamera: {fileID: 620304453}
+  CamTrans: {fileID: 620304454}
 --- !u!143 &10551138510688146
 CharacterController:
   m_ObjectHideFlags: 0
