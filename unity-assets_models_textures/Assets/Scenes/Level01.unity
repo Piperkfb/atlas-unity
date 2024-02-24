@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 620304454}
   - component: {fileID: 620304453}
   - component: {fileID: 620304452}
+  - component: {fileID: 620304455}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -208,13 +209,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620304451}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.078459114, y: 0, z: 0, w: 0.99691737}
+  m_LocalPosition: {x: 0, y: 2.5, z: -6.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9, y: 0, z: 0}
+--- !u!114 &620304455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620304451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45ac81c7d4856d4a9a58579e535b276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  the: {fileID: 620304454}
+  player: {fileID: 10551138510688138}
+  MouseSpeed: 4
 --- !u!1001 &1014478703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -663,8 +679,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   jumpSpeed: 7
-  gravity: 20
+  gravity: 9
   fallVelocity: 0
+  mainCamera: {fileID: 620304453}
 --- !u!143 &10551138510688146
 CharacterController:
   m_ObjectHideFlags: 0
