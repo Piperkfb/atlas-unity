@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
     public float rotatito;
-    public float gravity;
+    private float gravity;
     public float fallVelocity;
     private CharacterController player;
     public Transform CamTrans;
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        StartCoroutine(Beginning(1));
         player = GetComponent<CharacterController>();
     }
 
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 velocity = direction * magnitude;
-        velocity.y = gravity;
+        velocity.y = gravity * fallVelocity;
         player.Move(velocity * Time.deltaTime);
         
         if (direction != Vector3.zero)
@@ -66,6 +68,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation =
                 Quaternion.RotateTowards(transform.rotation, toRotation, rotatito * Time.deltaTime);
         }
+    }
+    IEnumerator Beginning(float seconds)
+    {
+        gravity = -2f;
+        yield return new WaitForSeconds(seconds);
+        
     }
     private void LateUpdate() 
     {
