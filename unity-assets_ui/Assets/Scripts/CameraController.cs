@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     public Transform the;
     public GameObject player;
     public float MouseSpeed = 4f;
+    public bool isInverted;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,14 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * MouseSpeed, Vector3.up) * Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * MouseSpeed, Vector3.left) * offset;
+            if (isInverted == true)
+            {
+                offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * MouseSpeed, Vector3.up) * Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * MouseSpeed, Vector3.left) * offset;
+            }
+            else
+            {
+                offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * MouseSpeed, Vector3.down) * Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * MouseSpeed, Vector3.left) * offset;
+            }
             transform.position = player.transform.position + offset;
             transform.LookAt(player.transform.position);
         }
@@ -29,4 +37,5 @@ public class CameraController : MonoBehaviour
             transform.position = player.transform.position + offset;
         }
     }
+    
 }

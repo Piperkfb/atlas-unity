@@ -9,6 +9,7 @@ public class OptionsMenu : MonoBehaviour
     public Button backButton;
     public Button applyBurtton;
     private int SceneHistory;
+    private Toggle invertY;
     // Start is called before the first frame update
     void Start()
     {
