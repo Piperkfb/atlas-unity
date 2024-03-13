@@ -9724,6 +9724,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4042610573863259248, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
+      propertyPath: m_text
+      value: Next
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949149356718027879, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
+      propertyPath: m_Name
+      value: FinalTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565249438192321975, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
+      propertyPath: m_text
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187525195668028336, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
+      propertyPath: m_text
+      value: 00:00:00
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
