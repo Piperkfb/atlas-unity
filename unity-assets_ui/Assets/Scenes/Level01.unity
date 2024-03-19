@@ -9724,6 +9724,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3107471863343971882, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4042610573863259248, guid: 48f4187b6098e0d4b887718d607655c1, type: 3}
       propertyPath: m_text
       value: Next
