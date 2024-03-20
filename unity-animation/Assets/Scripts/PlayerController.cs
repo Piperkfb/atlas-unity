@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = direction * magnitude;
         velocity.y = gravity * fallVelocity;
         player.Move(velocity * Time.deltaTime);
+        //player.transform.Rotate(Vector3.up * (Input.GetAxis("Horizontal")) * rotatito * Time.deltaTime);
         
         if (direction != Vector3.zero)
         {

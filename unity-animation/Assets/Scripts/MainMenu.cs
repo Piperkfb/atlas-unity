@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     public void LevelSelect(int lvl)
     {
         SceneManager.LoadScene("Level0" + lvl);
+        
     }
 
     public void Options()
