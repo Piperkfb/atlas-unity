@@ -16,10 +16,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 camForward;
     private Vector3 camRight;
     private Vector3 direction = Vector3.zero;
+    public Animator Anime;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        Anime = GetComponentInChildren<Animator>();
         StartCoroutine(Beginning(1));
         player = GetComponent<CharacterController>();
     }
@@ -51,9 +53,11 @@ public class PlayerController : MonoBehaviour
 
         if (player.isGrounded)
         {
+            Anime.SetBool("On Ground", true);
             gravity = -0.5f;
             if (Input.GetButtonDown("Jump"))
             {
+                Anime.SetBool("On Ground", false);
                 gravity = jumpSpeed;
             }
         }
@@ -61,13 +65,17 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = direction * magnitude;
         velocity.y = gravity * fallVelocity;
         player.Move(velocity * Time.deltaTime);
-        //player.transform.Rotate(Vector3.up * (Input.GetAxis("Horizontal")) * rotatito * Time.deltaTime);
-        
+
         if (direction != Vector3.zero)
         {
+            Anime.SetBool("IsRunning", true);
             Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation =
                 Quaternion.RotateTowards(transform.rotation, toRotation, rotatito * Time.deltaTime);
+        }
+        else
+        {
+            Anime.SetBool("IsRunning", false);
         }
     }
     IEnumerator Beginning(float seconds)
@@ -78,14 +86,26 @@ public class PlayerController : MonoBehaviour
     }
     private void LateUpdate() 
     {
-        DidYouFall();    
+        DidYouFall();
+        AreUFalling();
     }
     void DidYouFall()
     {
         if (transform.position.y < -20)
         {
-        player.SimpleMove(Vector3.zero);
-        player.transform.position = new Vector3(0, 15, 0);
+            player.SimpleMove(Vector3.zero);
+            player.transform.position = new Vector3(0, 15, 0);
+        }
+    }
+    void AreUFalling()
+    {
+        if (transform.position.y < -2)
+        {
+            Anime.SetBool("IsFalling", true);
+        }
+        else
+        {
+            Anime.SetBool("IsFalling", false);
         }
     }
 }

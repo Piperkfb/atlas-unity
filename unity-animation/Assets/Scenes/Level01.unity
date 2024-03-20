@@ -1692,32 +1692,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1442445791}
   m_SourcePrefab: {fileID: 100100000, guid: ad0f68cb953184d4da97bf5baa05653c, type: 3}
---- !u!1 &219144454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6787063782285731166, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
-  m_PrefabInstance: {fileID: 77896023132434398}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &219144455 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4726552990879334512, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
-  m_PrefabInstance: {fileID: 77896023132434398}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &219144459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219144454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9328e85de750266429ddef004ab00db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainCam: {fileID: 620304451}
-  PlayContr: {fileID: 10551138510688138}
-  TimeCanv: {fileID: 1657136142}
-  CutControl: {fileID: 219144455}
 --- !u!1001 &223968679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4584,8 +4558,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 6d29657c5a62b58408ec2bbb4c39824d, type: 2}
     - target: {fileID: 5866666021909216657, guid: 315fc8aa024b5f642badf4ed4a87f74e, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Boy:Hips'\n\tTransform 'Boy:LeftArm'\n\tTransform
+        'Boy:RightHandRing1'\n\tTransform 'Boy:RightHandThumb1'\n\tTransform 'Boy:LeftHandRing2'\n\tTransform
+        'Boy:Head'\n\tTransform 'Boy:LeftHandPinky2'\n\tTransform 'Boy:RightHandIndex2'\n\tTransform
+        'Boy:RightArm'\n\tTransform 'Boy:LeftHandIndex3'\n\tand more ...\n\tFrom
+        animation clip 'Running'\n\tFrom animation clip 'Falling'\n\tFrom animation
+        clip 'Jump'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 315fc8aa024b5f642badf4ed4a87f74e, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6707,6 +6692,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!95 &1232626099 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 315fc8aa024b5f642badf4ed4a87f74e, type: 3}
+  m_PrefabInstance: {fileID: 774269971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1281368648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9661,6 +9651,7 @@ MonoBehaviour:
   rotatito: 700
   fallVelocity: 5
   CamTrans: {fileID: 620304454}
+  Anime: {fileID: 1232626099}
 --- !u!143 &10551138510688146
 CharacterController:
   m_ObjectHideFlags: 0
@@ -9758,62 +9749,67 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4726552990879334512, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 3629624843901248083, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
+      propertyPath: MainCam
+      value: 
+      objectReference: {fileID: 620304451}
+    - target: {fileID: 3629624843901248083, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
+      propertyPath: TimeCanv
+      value: 
+      objectReference: {fileID: 1657136142}
+    - target: {fileID: 3629624843901248083, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
+      propertyPath: PlayContr
+      value: 
+      objectReference: {fileID: 10551138510688138}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.86
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.97
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalPosition.z
       value: 95.2
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9894126
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.14513017
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 16.69
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6327286636496800532, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6327286636496800532, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6787063782285731166, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    - target: {fileID: 6787063782285731166, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
       propertyPath: m_Name
       value: CutsceneCamera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6787063782285731166, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 219144459}
-  m_SourcePrefab: {fileID: 100100000, guid: e92b03899c64ad448891f49b6a7e622e, type: 3}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f2b043403ba0ab449a283a9154a35bf, type: 3}
 --- !u!1001 &6537876569424111409
 PrefabInstance:
   m_ObjectHideFlags: 0

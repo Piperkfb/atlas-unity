@@ -13,7 +13,7 @@ public class CutsceneCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CutControl = GetComponent<Animator>();
+        CutControl = GetComponentInChildren<Animator>();
         CutControl.Play("Intro01", 0, 0.0f);
         Invoke("startScene", 2.0f);
     }
