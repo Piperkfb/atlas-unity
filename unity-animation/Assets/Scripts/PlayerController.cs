@@ -57,9 +57,12 @@ public class PlayerController : MonoBehaviour
             gravity = -0.5f;
             if (Input.GetButtonDown("Jump"))
             {
-                Anime.SetBool("On Ground", false);
                 gravity = jumpSpeed;
             }
+        }
+        else
+        {
+            Anime.SetBool("On Ground", false);
         }
 
         Vector3 velocity = direction * magnitude;
@@ -93,8 +96,11 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -20)
         {
+            Anime.SetBool("Respawned", true);
             player.SimpleMove(Vector3.zero);
             player.transform.position = new Vector3(0, 15, 0);
+            //lock player control until ani animations finish
+            
         }
     }
     void AreUFalling()
