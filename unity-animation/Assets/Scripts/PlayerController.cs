@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 camRight;
     private Vector3 direction = Vector3.zero;
     public Animator Anime;
+    public Rigidbody playrid;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         Anime = GetComponentInChildren<Animator>();
         StartCoroutine(Beginning(1));
         player = GetComponent<CharacterController>();
+        playrid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -91,6 +93,19 @@ public class PlayerController : MonoBehaviour
     {
         DidYouFall();
         AreUFalling();
+        Splat();
+    }
+    
+    void Splat()
+    {
+        if (Anime.GetCurrentAnimatorStateInfo(0).IsName("Getting Up"))
+        {
+            if (Anime.GetCurrentAnimatorStateInfo(0).normalizedTime == 1)
+            {
+                playrid.constraints = RigidbodyConstraints.None;
+                Anime.SetBool("Respawned", false);
+            }
+        }
     }
     void DidYouFall()
     {
@@ -98,8 +113,11 @@ public class PlayerController : MonoBehaviour
         {
             Anime.SetBool("Respawned", true);
             player.SimpleMove(Vector3.zero);
+            
             player.transform.position = new Vector3(0, 15, 0);
             //lock player control until ani animations finish
+
+            playrid.constraints = RigidbodyConstraints.FreezeAll;
             
         }
     }

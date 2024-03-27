@@ -14,7 +14,7 @@ public class CutsceneCamera : MonoBehaviour
     void Start()
     {
         CutControl = GetComponentInChildren<Animator>();
-        CutControl.Play("Intro01", 0, 0.0f);
+        CutControl.Play("Intro01");
         Invoke("startScene", 2.0f);
     }
 

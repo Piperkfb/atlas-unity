@@ -9645,6 +9645,7 @@ MonoBehaviour:
   fallVelocity: 5
   CamTrans: {fileID: 620304454}
   Anime: {fileID: 1232626099}
+  playrid: {fileID: 10551138510688151}
 --- !u!143 &10551138510688146
 CharacterController:
   m_ObjectHideFlags: 0
