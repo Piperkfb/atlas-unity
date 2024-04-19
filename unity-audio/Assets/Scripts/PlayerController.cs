@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private bool jumpped;
+
+    public AudioSource walking, thump;
     public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
     public float rotatito;
@@ -55,10 +58,16 @@ public class PlayerController : MonoBehaviour
 
         if (player.isGrounded)
         {
+            if (jumpped == true)
+            {
+                thump.Play();
+                jumpped = false;
+            }
             Anime.SetBool("On Ground", true);
             gravity = -0.5f;
             if (Input.GetButtonDown("Jump"))
             {
+                jumpped = true;
                 gravity = jumpSpeed;
             }
         }
@@ -73,6 +82,10 @@ public class PlayerController : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
+            if (player.isGrounded)
+                walking.enabled = true;
+            else
+                walking.enabled = false;
             Anime.SetBool("IsRunning", true);
             Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation =
@@ -80,6 +93,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            walking.enabled = false;
             Anime.SetBool("IsRunning", false);
         }
     }
