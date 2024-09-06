@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseMovement : MonoBehaviour
+public class MovementCamNPlayer : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
-
+    public Camera BCam;
+    public Camera maincam;
+    public float mouseSensitivity = 200f;
+    public Transform BBall;
+    public float Bspeed = 1f;
     float xRotation = 0f;
     public float speed = 5f;
+    public bool Bowling;
+    private Vector3 Bforward = new Vector3(0f, 0f, 0.04f);
 
     void Start()
     {
@@ -18,7 +23,19 @@ public class MouseMovement : MonoBehaviour
 
     void Update()
     {
-            // Get mouse input
+        if (Bowling == false)
+        {   
+            BeginControl();
+        }
+        else if (Bowling == true)
+        {
+            BowlingStart();
+        }
+
+    }
+    void BeginControl()
+    {
+        // Get mouse input
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -39,6 +56,14 @@ public class MouseMovement : MonoBehaviour
 
         // Apply the movement to the player's position
         transform.Translate(move, Space.World);
-
+    }
+    void BowlingStart()
+    {
+        // transform.position = new Vector3(-16.9f, 7.3f, -22.8f);
+        // transform.Rotate = new Quaternion(0.4f, 0, 0);
+        float BowlingDirection = Input.GetAxis("Horizontal");
+        //Move the ball during bowling
+        Vector3 move = Vector3.right * BowlingDirection * Bspeed * Time.deltaTime;
+        BBall.transform.Translate(move + Bforward, Space.World);
     }
 }

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Grabbing : MonoBehaviour
 {
-
-    private Camera mainCamera;
+    public MovementCamNPlayer MoveScript;
+    public Vector3 StartLine;
+    public Camera mainCamera;
+    public Camera BCam;
     private bool isPickedUp = false;
     private Vector3 offset;
     private float zDistanceToCamera;
@@ -15,7 +18,6 @@ public class Grabbing : MonoBehaviour
         // Cursor.lockState = CursorLockMode.None;
         
         // Cache the main camera reference
-        mainCamera = Camera.main;
     }
 
     void Update()
@@ -23,30 +25,40 @@ public class Grabbing : MonoBehaviour
         // Check for mouse click
         if (Input.GetMouseButtonDown(0))
         {
-            // If the object is already picked up, drop it
+            // If the object is already picked up, throw it
             if (isPickedUp)
             {
+                //power gauge
+                //release mouse, throw ball
+                MoveScript.BBall.transform.position = StartLine;
+                MoveScript.Bowling = true;                
+                MoveScript.maincam.enabled = false;
+                MoveScript.BCam.enabled = true;
                 isPickedUp = false;
-                return;
+                //switch cameras
+
             }
-
-            // Raycast to see if we clicked on the object
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            else
             {
-                // Check if we hit this object
-                if (hit.transform == transform)
+                // Raycast to see if we clicked on the object
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 200f))
                 {
-                    // Calculate the distance from the camera to the object
-                    zDistanceToCamera = Vector3.Distance(transform.position, mainCamera.transform.position);
-                    
-                    // Calculate offset from the object's center to the point clicked
-                    offset = transform.position - hit.point;
-                    
-                    // Pick up the object
-                    isPickedUp = true;
+                    // Check if we hit this object
+                    if (hit.transform == transform)
+                    {
+                        MoveScript.BBall = hit.transform;
+                        // Calculate the distance from the camera to the object
+                        zDistanceToCamera = Vector3.Distance(transform.position, mainCamera.transform.position);
+                        
+                        // Calculate offset from the object's center to the point clicked
+                        offset = transform.position - hit.point;
+                        
+                        // Pick up the object
+                        isPickedUp = true;
+                    }
                 }
             }
         }
@@ -56,7 +68,7 @@ public class Grabbing : MonoBehaviour
         {
             // Get the mouse position in world space
             Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = zDistanceToCamera;
+            mousePosition.z = zDistanceToCamera - 1.5f;
 
             // Convert mouse position to world point
             Vector3 newPosition = mainCamera.ScreenToWorldPoint(mousePosition) + offset;
@@ -64,5 +76,20 @@ public class Grabbing : MonoBehaviour
             // Move the object to the new position
             transform.position = newPosition;
         }
+    }
+    void OnCollisionEnter(Collision clid)
+    {
+        if (clid.gameObject.CompareTag("pins"))
+        {
+            StartCoroutine(PinsFall());
+        }
+    }
+    IEnumerator PinsFall()
+    {
+        
+        yield return new WaitForSeconds(3);
+        MoveScript.maincam.enabled = true;
+        MoveScript.BCam.enabled = false;
+        MoveScript.Bowling = false;
     }
 }
